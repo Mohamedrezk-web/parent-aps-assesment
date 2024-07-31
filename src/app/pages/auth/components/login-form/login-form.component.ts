@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
 
@@ -11,6 +11,8 @@ import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
 })
 export class LoginFormComponent implements OnInit {
   loginFormGroup!: FormGroup<LoginFormControls>;
+
+  @Output() onSubmit = new EventEmitter<LoginFormValue | null>();
 
   constructor() {}
 
@@ -33,8 +35,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   submitFormValue() {
-    const { valid, value } = this.loginFormGroup;
+    const value = this.loginFormGroup.getRawValue();
 
-    console.log(value);
+    this.onSubmit.emit(value as any);
   }
 }
