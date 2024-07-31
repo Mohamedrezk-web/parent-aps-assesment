@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginFormComponent } from '@app/pages/auth/components';
+import { LoginFormValue } from '@app/pages/auth/models';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  login(value: any) {
+  login(value: LoginFormValue) {
+    if (!value) return;
     console.log(value);
   }
 }

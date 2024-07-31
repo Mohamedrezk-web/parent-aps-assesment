@@ -12,7 +12,7 @@ import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
 export class LoginFormComponent implements OnInit {
   loginFormGroup!: FormGroup<LoginFormControls>;
 
-  @Output() onSubmit = new EventEmitter<LoginFormValue | null>();
+  @Output() onSubmit = new EventEmitter<LoginFormValue>();
 
   constructor() {}
 
@@ -22,21 +22,19 @@ export class LoginFormComponent implements OnInit {
 
   initLoginForm(
     initValue: LoginFormValue = {
-      user: null,
+      email: null,
       password: null,
-      shouldRememberUser: false,
     }
   ) {
     this.loginFormGroup = new FormGroup<LoginFormControls>({
-      user: new FormControl(initValue.user),
+      email: new FormControl(initValue.email),
       password: new FormControl(initValue.password),
-      shouldRememberUser: new FormControl(initValue.shouldRememberUser),
     });
   }
 
   submitFormValue() {
     const value = this.loginFormGroup.getRawValue();
 
-    this.onSubmit.emit(value as any);
+    this.onSubmit.emit(value);
   }
 }
