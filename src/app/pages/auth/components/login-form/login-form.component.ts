@@ -1,5 +1,11 @@
+import { NgClass } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
 
 @Component({
@@ -7,12 +13,16 @@ import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
   standalone: true,
   templateUrl: './login-form.component.html',
 
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
 })
 export class LoginFormComponent implements OnInit {
   loginFormGroup!: FormGroup<LoginFormControls>;
-
+  submitted: boolean = false;
   @Output() onSubmit = new EventEmitter<LoginFormValue>();
+
+  get formControls() {
+    return this.loginFormGroup.controls;
+  }
 
   constructor() {}
 
@@ -27,14 +37,18 @@ export class LoginFormComponent implements OnInit {
     }
   ) {
     this.loginFormGroup = new FormGroup<LoginFormControls>({
-      email: new FormControl(initValue.email),
-      password: new FormControl(initValue.password),
+      email: new FormControl(initValue.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl(initValue.password, [Validators.required]),
     });
   }
 
   submitFormValue() {
-    const value = this.loginFormGroup.getRawValue();
-
-    this.onSubmit.emit(value);
+    this.submitted = true;
+    const { getRawValue, valid } = this.loginFormGroup;
+    if (!valid) return;
+    this.onSubmit.emit(getRawValue());
   }
 }
