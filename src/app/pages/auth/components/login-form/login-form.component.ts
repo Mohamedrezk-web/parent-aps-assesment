@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { LoginFormControls, LoginFormValue } from './login.model';
+import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-form',
   standalone: true,
-  templateUrl: './login.component.html',
-  host: {
-    class: 'w100 h-100 d-flex justify-content-center ',
-  },
+  templateUrl: './login-form.component.html',
+
   imports: [ReactiveFormsModule],
 })
-export class LoginComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
   loginFormGroup!: FormGroup<LoginFormControls>;
 
   constructor() {}
@@ -34,7 +32,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  submitFormValue() {
     const { valid, value } = this.loginFormGroup;
 
     console.log(value);
