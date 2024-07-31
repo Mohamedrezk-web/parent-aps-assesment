@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { LayoutComponent } from './ui/layout/layout.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [LayoutComponent],
+  imports: [LayoutComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
