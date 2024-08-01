@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -18,6 +18,8 @@ import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
 export class LoginFormComponent implements OnInit {
   loginFormGroup!: FormGroup<LoginFormControls>;
   submitted: boolean = false;
+
+  loading = input(false);
   @Output() onSubmit = new EventEmitter<LoginFormValue>();
 
   get formControls() {

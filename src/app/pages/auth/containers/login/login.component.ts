@@ -13,7 +13,7 @@ import { LoginService } from '@app/pages/auth/services/login.service';
   imports: [LoginFormComponent],
 })
 export class LoginComponent implements OnInit {
-  _loginService: LoginService = inject(LoginService);
+  readonly _loginService: LoginService = inject(LoginService);
   constructor() {}
 
   ngOnInit() {}

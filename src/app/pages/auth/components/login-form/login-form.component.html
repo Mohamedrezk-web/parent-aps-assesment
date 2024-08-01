@@ -44,8 +44,18 @@
   </div>
 
   <div class="d-grid">
-    <button type="button" class="btn btn-primary" (click)="submitFormValue()">
-      Login
+    <button
+      type="button"
+      class="btn btn-primary d-flex justify-content-center align-items-center gap-2"
+      (click)="submitFormValue()"
+      [disabled]="loading()"
+    >
+      Login @if (loading()) {
+
+      <div class="spinner-border spinner-border-sm" role="status">
+        <span class="sr-only text-success">.</span>
+      </div>
+      }
     </button>
   </div>
 </form>
