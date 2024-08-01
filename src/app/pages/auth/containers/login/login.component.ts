@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LoginFormComponent } from '@app/pages/auth/components';
 import { LoginFormValue } from '@app/pages/auth/models';
+import { LoginService } from '@app/pages/auth/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,13 @@ import { LoginFormValue } from '@app/pages/auth/models';
   imports: [LoginFormComponent],
 })
 export class LoginComponent implements OnInit {
+  _loginService: LoginService = inject(LoginService);
   constructor() {}
 
   ngOnInit() {}
 
   login(value: LoginFormValue) {
     if (!value) return;
-    console.log(value);
+    this._loginService.login(value).subscribe();
   }
 }

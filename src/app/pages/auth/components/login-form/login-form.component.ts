@@ -32,8 +32,8 @@ export class LoginFormComponent implements OnInit {
 
   initLoginForm(
     initValue: LoginFormValue = {
-      email: null,
-      password: null,
+      email: 'eve.holt@reqres.in',
+      password: 'cityslicka',
     }
   ) {
     this.loginFormGroup = new FormGroup<LoginFormControls>({
@@ -47,8 +47,8 @@ export class LoginFormComponent implements OnInit {
 
   submitFormValue() {
     this.submitted = true;
-    const { getRawValue, valid } = this.loginFormGroup;
+    const { valid } = this.loginFormGroup;
     if (!valid) return;
-    this.onSubmit.emit(getRawValue());
+    this.onSubmit.emit(this.loginFormGroup.getRawValue());
   }
 }
