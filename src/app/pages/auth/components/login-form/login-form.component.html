@@ -1,0 +1,61 @@
+<form
+  [formGroup]="loginFormGroup"
+  [ngClass]="{
+    'was-validated': loginFormGroup.valid
+  }"
+  class="needs-validation"
+>
+  <div class="mb-4">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      class="form-control"
+      id="email"
+    />
+    @if (formControls.email.errors && submitted) {
+
+    <div
+      class="invalid-feedback"
+      [ngClass]="[formControls.email.valid ? 'd-none' : 'd-block']"
+    >
+      {{ formControls.email.errors["required"] && "Email is required." }}
+      {{ formControls.email.errors["email"] && "Please add correct email." }}
+    </div>
+    }
+  </div>
+  <div class="mb-4">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      formControlName="password"
+      class="form-control"
+      id="password"
+    />
+    @if (formControls.password.errors && submitted) {
+
+    <div
+      class="invalid-feedback"
+      [ngClass]="[formControls.password.valid ? 'd-none' : 'd-block']"
+    >
+      Password is required.
+    </div>
+    }
+  </div>
+
+  <div class="d-grid">
+    <button
+      type="button"
+      class="btn btn-primary d-flex justify-content-center align-items-center gap-2"
+      (click)="submitFormValue()"
+      [disabled]="loading()"
+    >
+      Login @if (loading()) {
+
+      <div class="spinner-border spinner-border-sm" role="status">
+        <span class="sr-only text-success">.</span>
+      </div>
+      }
+    </button>
+  </div>
+</form>

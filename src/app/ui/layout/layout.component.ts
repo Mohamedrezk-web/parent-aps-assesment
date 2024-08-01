@@ -6,12 +6,28 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  templateUrl: './layout.component.html',
+  template: `
+    @if (localStorageToken) {
+    <app-header></app-header>
+    <main class="flex-shrink-0">
+      <router-outlet></router-outlet>
+    </main>
+    <footer class="mt-auto">
+      <app-footer></app-footer>
+    </footer>
+    } @else {
+    <router-outlet></router-outlet>
+
+    }
+  `,
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   host: {
-    class: 'd-flex flex-column h-100 w-100',
+    class: 'container d-flex flex-column h-100 w-100',
   },
 })
 export class LayoutComponent {
+  get localStorageToken() {
+    return localStorage.getItem('token');
+  }
   constructor() {}
 }
