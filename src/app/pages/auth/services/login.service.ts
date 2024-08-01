@@ -36,4 +36,10 @@ export class LoginService {
         })
       );
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.authService.updateCurrentUser(null);
+    this.router.navigateByUrl('/login');
+  }
 }
