@@ -1,9 +1,9 @@
 export interface User {
+  avatar: string;
+  email: string;
+  first_name: string;
   id: number;
-  name: string;
-  year: number;
-  color: string;
-  pantone_value: string;
+  last_name: string;
 }
 
 export interface GetUsersApiResponse {

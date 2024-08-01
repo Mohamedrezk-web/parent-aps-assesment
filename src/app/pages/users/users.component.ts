@@ -1,23 +1,42 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { UsersService } from './services/users.service';
 import { map, Observable } from 'rxjs';
-import { User } from './models/users.model';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { GetUsersApiResponse, User } from './models/users.model';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
+import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   templateUrl: './users.component.html',
-  imports: [AsyncPipe, NgIf],
+  imports: [AsyncPipe, NgIf, NgClass, NumberToArrayPipe],
   host: {
-    class:
-      'row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3 h-100  overflow-auto ',
+    class: 'h-100 d-block position-relative ',
   },
   providers: [UsersService],
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
+  activePageIndex = signal(1);
   private _usersService: UsersService = inject(UsersService);
-  user$: Observable<User[]> = this._usersService
-    .getAll()
-    .pipe(map((response) => response.data));
+  user$: Observable<GetUsersApiResponse> = this._usersService.getAll(1);
+
+  ngOnInit(): void {}
+  changePage(pageIndex: number) {
+    this.user$ = this._usersService.getAll(pageIndex);
+    this.activePageIndex.set(pageIndex);
+  }
+
+  changeToNextPage(stoppingNumber: number, activePageIndex: number) {
+    if (activePageIndex == stoppingNumber) return;
+    const newActiveIndex = activePageIndex + 1;
+    this.activePageIndex.set(newActiveIndex);
+    this.changePage(newActiveIndex);
+  }
+
+  changeToPreviousPage(stoppingNumber: number, activePageIndex: number) {
+    if (activePageIndex == stoppingNumber) return;
+    const newActiveIndex = activePageIndex - 1;
+    this.activePageIndex.set(newActiveIndex);
+    this.changePage(newActiveIndex);
+  }
 }

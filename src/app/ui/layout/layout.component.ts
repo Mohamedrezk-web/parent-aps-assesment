@@ -9,7 +9,7 @@ import { FooterComponent } from '../footer/footer.component';
   template: `
     @if (localStorageToken) {
     <app-header></app-header>
-    <main class="p-3">
+    <main class="overflow-auto p-3 mb-3">
       <router-outlet></router-outlet>
     </main>
     <footer class="mt-auto">
