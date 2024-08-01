@@ -4,12 +4,13 @@ import { map, Observable } from 'rxjs';
 import { GetUsersApiResponse, User } from './models/users.model';
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
+import { LoaderComponent } from '@app/shared/components/loader.component';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   templateUrl: './users.component.html',
-  imports: [AsyncPipe, NgIf, NgClass, NumberToArrayPipe],
+  imports: [AsyncPipe, NgIf, NgClass, NumberToArrayPipe, LoaderComponent],
   host: {
     class: 'h-100 d-block position-relative ',
   },
