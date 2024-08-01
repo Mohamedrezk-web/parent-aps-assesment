@@ -15,6 +15,9 @@ import { LoginService } from '@app/pages/auth/services/login.service';
       </div>
     </nav>
   `,
+  host: {
+    class: 'd-block z-1',
+  },
 })
 export class HeaderComponent implements OnInit {
   private readonly _loginService: LoginService = inject(LoginService);

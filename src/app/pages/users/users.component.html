@@ -1,11 +1,24 @@
-<div class="card h-fit-content bg-dark bg-opacity-10">
-  <img src="..." class="card-img-top" alt="..." />
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<ng-container *ngIf="user$ | async as users">
+  @for (user of users; track user.id) {
+  <div class="col">
+    <div class="card bg-dark bg-opacity-10">
+      <img
+        src="https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXJsfGVufDB8fDB8fHww"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">
+          {{ user.pantone_value }}
+          {{ user.year }}
+        </p>
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-primary">View Details</a>
+          <a class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  }
+</ng-container>
