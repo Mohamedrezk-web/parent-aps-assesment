@@ -5,7 +5,7 @@ import { shareReplay } from 'rxjs';
 import { GetUsersApiResponse } from '../models/users.model';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   private USERS_END_POINT = 'api/users';
 
   readonly loading = signal<boolean>(false);
@@ -14,11 +14,11 @@ export class UsersService {
 
   constructor() {}
 
-  getAll(page: number) {
+  getById(id: number) {
     this.loading.set(true);
     return this.http
       .get<GetUsersApiResponse>(
-        `${environment.BASE_URL}${this.USERS_END_POINT}?page=${page}`
+        `${environment.BASE_URL}${this.USERS_END_POINT}/${id}`
       )
       .pipe(shareReplay());
   }
