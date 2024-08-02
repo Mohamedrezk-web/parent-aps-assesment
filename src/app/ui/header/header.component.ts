@@ -5,18 +5,20 @@ import { LoginService } from '@app/pages/auth/services/login.service';
   selector: 'app-header',
   standalone: true,
   template: `
-    <nav class="navbar navbar-dark bg-dark p-3">
-      <a class="navbar-brand"> Assessment </a>
-      <div class="mr-auto"></div>
-      <div class="navbar-expand">
-        <div class="navbar-nav">
-          <a class="btn btn-secondary" (click)="logout()">Log Out</a>
+    <div class="container">
+      <nav class="navbar navbar-dark  py-3 ">
+        <a class="navbar-brand"> Assessment </a>
+        <div class="mr-auto"></div>
+        <div class="navbar-expand">
+          <div class="navbar-nav">
+            <a class="btn btn-secondary " (click)="logout()">Log Out</a>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   `,
   host: {
-    class: 'd-block z-1',
+    class: 'd-block z-1 bg-dark vw-100 sticky-top',
   },
 })
 export class HeaderComponent implements OnInit {

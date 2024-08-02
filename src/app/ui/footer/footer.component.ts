@@ -4,17 +4,18 @@ import { Component } from '@angular/core';
   selector: 'app-footer',
   standalone: true,
   template: `
-    <div class="py-3 bg-dark text-center">
-      <small>
-        <a
-          href="https://github.com/Mohamedrezk-web/parent-aps-assessment"
-          class="text-light text-decoration-none"
-          >Parent App Assessment</a
-        >
-        &copy; 2024</small
+    <small>
+      <a
+        href="https://github.com/Mohamedrezk-web/parent-aps-assessment"
+        class="text-light text-decoration-none"
+        >Parent App Assessment</a
       >
-    </div>
+      &copy; 2024</small
+    >
   `,
+  host: {
+    class: 'py-3 bg-dark text-center',
+  },
 })
 export class FooterComponent {
   constructor() {}

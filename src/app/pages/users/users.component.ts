@@ -12,7 +12,7 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
   templateUrl: './users.component.html',
   imports: [AsyncPipe, NgIf, NgClass, NumberToArrayPipe, LoaderComponent],
   host: {
-    class: 'h-100 d-block position-relative ',
+    class: 'h-100 w-100 d-flex flex-column overflow-auto px-3',
   },
   providers: [UsersService],
 })

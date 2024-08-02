@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
     <div class="d-flex flex-column align-items-center  gap-2">
       <h1>Loading...</h1>
       <p class="text-secondary">
-        please wait until we get <ng-content></ng-content>>
+        please wait until we get <ng-content></ng-content>
       </p>
     </div>
   `,

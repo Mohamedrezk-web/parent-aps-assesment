@@ -9,12 +9,10 @@ import { FooterComponent } from '../footer/footer.component';
   template: `
     @if (localStorageToken) {
     <app-header></app-header>
-    <main class="overflow-auto p-3 mb-3">
+    <main class="container d-flex  bg-dark bg-opacity-10 px-2 ">
       <router-outlet></router-outlet>
     </main>
-    <footer class="mt-auto">
-      <app-footer></app-footer>
-    </footer>
+    <app-footer></app-footer>
     } @else {
     <router-outlet></router-outlet>
 
@@ -22,7 +20,7 @@ import { FooterComponent } from '../footer/footer.component';
   `,
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   host: {
-    class: 'container d-flex flex-column h-100 w-100',
+    class: ' d-flex flex-column w-100 h-100',
   },
 })
 export class LayoutComponent {
