@@ -13,6 +13,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./ui/layout/layout.component').then((c) => c.LayoutComponent),
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/users/users.component').then((c) => c.UsersComponent),
+        canActivate: [AuthGuard],
+      },
+    ],
   },
 
   {
