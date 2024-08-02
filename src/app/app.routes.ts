@@ -22,9 +22,9 @@ export const routes: Routes = [
       {
         path: 'user-details/:id',
         loadComponent: () =>
-          import('./pages/users/containers/user-view/user-view.component').then(
-            (c) => c.UserViewComponent
-          ),
+          import(
+            './pages/users/containers/user-details/user-details.component'
+          ).then((c) => c.UserDetailsComponent),
       },
     ],
   },
