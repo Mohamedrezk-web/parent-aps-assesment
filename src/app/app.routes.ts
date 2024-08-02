@@ -18,7 +18,13 @@ export const routes: Routes = [
         path: '',
         loadComponent: () =>
           import('./pages/users/users.component').then((c) => c.UsersComponent),
-        canActivate: [AuthGuard],
+      },
+      {
+        path: 'user-details/:id',
+        loadComponent: () =>
+          import('./pages/users/containers/user-view/user-view.component').then(
+            (c) => c.UserViewComponent
+          ),
       },
     ],
   },

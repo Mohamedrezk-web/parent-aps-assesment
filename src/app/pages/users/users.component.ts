@@ -5,12 +5,20 @@ import { GetUsersApiResponse, User } from './models/users.model';
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
 import { LoaderComponent } from '@app/shared/components/loader.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   templateUrl: './users.component.html',
-  imports: [AsyncPipe, NgIf, NgClass, NumberToArrayPipe, LoaderComponent],
+  imports: [
+    AsyncPipe,
+    NgIf,
+    NgClass,
+    NumberToArrayPipe,
+    LoaderComponent,
+    RouterLink,
+  ],
   host: {
     class: 'h-100 w-100 d-flex flex-column overflow-auto px-3',
   },
