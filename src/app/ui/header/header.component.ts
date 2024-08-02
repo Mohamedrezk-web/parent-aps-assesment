@@ -6,7 +6,7 @@ import { LoginService } from '@app/pages/auth/services/login.service';
   standalone: true,
   template: `
     <div class="container">
-      <nav class="navbar navbar-dark  py-3 ">
+      <nav class="navbar navbar-dark p-3 ">
         <a class="navbar-brand"> Assessment </a>
         <div class="mr-auto"></div>
         <div class="navbar-expand">
