@@ -5,13 +5,42 @@
     'was-validated': userFormGroup.valid
   }"
 >
+  @if (!formControls.avatar.value) {
+
+  <input
+    accept="image/*"
+    type="file"
+    class="d-none"
+    (change)="onFileSelect($event)"
+    formControlName="avatar"
+    #fileInput
+  />
+  }
   <app-user-view>
+    @if (formControls.avatar.value) {
+    <img
+      [ngSrc]="formControls.avatar.value || ''"
+      priority
+      width="300"
+      height="300"
+      id="image-preview"
+      class="rounded-pill p-3 bg-secondary w-75 h-75"
+      (click)="clearAvatarValue(); triggerFileInputClick()"
+      left-view
+      #imgPreview
+    />
+
+    }@else {
+
     <div
       class="rounded-pill p-3 bg-secondary w-75 h-75 d-flex align-items-center justify-content-center text-white"
+      (click)="triggerFileInputClick()"
       left-view
     >
       Upload image
     </div>
+    }
+
     <ng-container right-view>
       <div class="d-flex gap-3 w-75">
         <div class="mb-3 w-50">
