@@ -9,7 +9,7 @@ import { AlertService } from '@app/shared/services/alert.service';
     <div
       class="alert alert-{{
         alertService.activeAlert()?.status
-      }} mt-3 mb-0 d-flex align-items-center gap-3 "
+      }} mt-3 mb-0 d-flex align-items-center justify-content-between gap-3 "
       role="alert"
     >
       <strong>
