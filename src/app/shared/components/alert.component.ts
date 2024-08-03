@@ -9,7 +9,7 @@ import { AlertService } from '../services/alert.service';
     <div
       class="alert alert-{{
         alertService.activeAlert()?.status
-      }} mt-3 mb-0 d-flex align-items-center justify-content-between"
+      }} mt-3 mb-0 d-flex align-items-center gap-3 "
       role="alert"
     >
       <strong>
@@ -28,14 +28,9 @@ import { AlertService } from '../services/alert.service';
   `,
   imports: [],
   host: {
-    class: ' w-100',
+    class: 'position-absolute alert-position',
   },
-  styles: `
-  .spinner {
-    width: 3rem;
-    height: 3rem;
-  }
-  `,
+
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {

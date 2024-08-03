@@ -11,7 +11,7 @@ import { AlertComponent } from '../../shared/components/alert.component';
     @if (localStorageToken) {
     <app-header></app-header>
     <main
-      class="container d-flex flex-column  px-2 justify-content-center align-items-center"
+      class="container d-flex flex-column  px-2 justify-content-center align-items-center position-relative"
     >
       <app-alert></app-alert>
       <router-outlet></router-outlet>
