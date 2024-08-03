@@ -1,10 +1,10 @@
 @if (user$ | async; as response) {
 <ul class="list-group py-3">
   <li class="list-group-item d-flex align-items-center justify-content-between">
-    <span>System Users</span>
+    <h3>System Users</h3>
 
     <a
-      class="btn btn-primary"
+      class="btn btn-outline-success"
       [routerLink]="['add-user']"
       routerLinkActive="router-link-active"
     >
@@ -20,7 +20,7 @@
     <div class="card h-100">
       <img [src]="user.avatar" class="card-img-top h-100" />
       <div class="card-body">
-        <h5 class="card-title text-uppercase">{{ user.first_name }}</h5>
+        <h2 class="card-title text-uppercase">{{ user.first_name }}</h2>
         <p class="card-text mb-4">
           {{ user.email }}
         </p>
@@ -31,7 +31,7 @@
             routerLinkActive="router-link-active"
             >View Details</a
           >
-          <a class="btn btn-danger">Delete</a>
+          <a class="btn btn-outline-secondary">Delete</a>
         </div>
       </div>
     </div>
