@@ -3,11 +3,16 @@ import { UserViewComponent } from '../../components/user-view/user-view.componen
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoaderComponent } from '@app/shared/components/loader.component';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
   template: `
+    @if (loading()) {
+    <app-loader>User</app-loader>
+    } @else {
+
     <app-user-view>
       <img
         [src]="userDetails()?.avatar"
@@ -36,11 +41,12 @@ import { Subscription } from 'rxjs';
         </li>
       </ul>
     </app-user-view>
+    }
   `,
   host: {
     class: 'd-flex w-100 h-50 align-items-center justify-content-center',
   },
-  imports: [UserViewComponent, RouterLink],
+  imports: [UserViewComponent, RouterLink, LoaderComponent],
   providers: [UserService],
 })
 export class UserDetailsComponent implements OnInit, OnDestroy {
@@ -52,6 +58,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   private router: Router = inject(Router);
 
   userDetails = this._userService.getUserDetails();
+  loading = this._userService.loading;
   constructor() {}
 
   ngOnInit(): void {

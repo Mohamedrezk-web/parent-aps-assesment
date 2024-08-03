@@ -4,15 +4,24 @@ import { UserFormComponent } from '../../components/user-form/user-form.componen
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { LoaderComponent } from '@app/shared/components/loader.component';
 
 @Component({
   selector: 'app-update-user',
   standalone: true,
-  template: ` <app-user-form [formValue]="userDetails()"></app-user-form> `,
+  template: `
+    @if (loading()) {
+
+    <app-loader></app-loader>
+    } @else {
+
+    <app-user-form [formValue]="userDetails()"></app-user-form>
+    }
+  `,
   host: {
     class: 'w-100 h-100 d-flex justify-content-center align-items-center',
   },
-  imports: [UserFormComponent],
+  imports: [UserFormComponent, LoaderComponent],
   providers: [UserService],
 })
 export class UpdateUserComponent implements OnInit, OnDestroy {
@@ -23,6 +32,7 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   userDetails = this._userService.getUserDetails();
+  loading = this._userService.loading;
 
   constructor() {}
 
