@@ -29,9 +29,9 @@ export const routes: Routes = [
       {
         path: 'user-details/:id/update',
         loadComponent: () =>
-          import('./pages/users/components/user-form/user-form.component').then(
-            (c) => c.UserFormComponent
-          ),
+          import(
+            './pages/users/containers/update-user/update-user.component'
+          ).then((c) => c.UpdateUserComponent),
       },
     ],
   },
