@@ -4,6 +4,7 @@ import { UserFormComponent } from '../../components/user-form/user-form.componen
 
 import { UserService } from '../../services/user.service';
 import { LoaderComponent } from '@app/shared/components/loader.component';
+import { UserFormValue } from '../../models/user-form.model';
 
 @Component({
   selector: 'app-add-user',
@@ -13,7 +14,10 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
     <app-loader></app-loader>
     } @else {
 
-    <app-user-form [loading]="isAddingUser()"></app-user-form>
+    <app-user-form
+      (onSubmit)="addUser($event)"
+      [loading]="isAddingUser()"
+    ></app-user-form>
     }
   `,
   host: {
@@ -30,6 +34,10 @@ export class AddUserComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {}
+
+  addUser(user: UserFormValue) {
+    this._userService.addUser(user);
+  }
 
   ngOnDestroy(): void {}
 }

@@ -29,14 +29,13 @@ import { RouterLink } from '@angular/router';
   imports: [UserViewComponent, ReactiveFormsModule, NgClass, RouterLink],
   providers: [UserService],
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnInit {
   userFormGroup!: FormGroup<UserFormControls>;
   submitted: boolean = false;
 
   @Input() set formValue(value: UserFormValue | null) {
-    if (!value) return;
     this.initUserForm();
-
+    if (!value) return;
     this.userFormGroup.patchValue(value);
   }
   loading = input(false);
@@ -48,9 +47,14 @@ export class UserFormComponent {
   }
   constructor() {}
 
+  ngOnInit(): void {
+    this.initUserForm();
+  }
+
   initUserForm(id = null) {
+    if (this.userFormGroup) return;
     this.userFormGroup = new FormGroup<UserFormControls>({
-      id: new FormControl(id, [Validators.required]),
+      id: new FormControl(id),
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
       avatar: new FormControl(''),
