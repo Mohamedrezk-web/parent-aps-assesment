@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { UserViewComponent } from '../../components/user-view/user-view.component';
 import { UserService } from '../../services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,15 +11,18 @@ import { Subscription } from 'rxjs';
     <app-user-view>
       <img
         [src]="userDetails()?.avatar"
-        class="rounded-pill p-3 bg-secondary w-100 h-100"
+        class="rounded-pill p-3 bg-secondary w-75 h-75"
         alt="..."
         left-view
+        loading="eager"
       />
       <ng-container right-view>
         <h1>{{ userDetails()?.first_name }} {{ userDetails()?.last_name }}</h1>
         <p>{{ userDetails()?.email }}</p>
       </ng-container>
-      <button class="btn btn-secondary" lift-view>Edit</button>
+      <button class="btn btn-secondary" lift-view (click)="navigateToUpdate()">
+        Update
+      </button>
     </app-user-view>
   `,
   host: {
@@ -34,6 +37,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
   private _userService: UserService = inject(UserService);
   private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
 
   userDetails = this._userService.getUserDetails();
   constructor() {}
@@ -44,6 +48,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       if (this.userDetails()?.id && this.userDetails()?.id == userId) return;
       this.dataSub = this._userService.updateUser(userId);
     });
+  }
+
+  navigateToUpdate() {
+    this.router.navigate(['update'], { relativeTo: this.route });
   }
 
   ngOnDestroy(): void {

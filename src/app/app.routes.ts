@@ -26,6 +26,13 @@ export const routes: Routes = [
             './pages/users/containers/user-details/user-details.component'
           ).then((c) => c.UserDetailsComponent),
       },
+      {
+        path: 'user-details/:id/update',
+        loadComponent: () =>
+          import('./pages/users/components/user-form/user-form.component').then(
+            (c) => c.UserFormComponent
+          ),
+      },
     ],
   },
 
