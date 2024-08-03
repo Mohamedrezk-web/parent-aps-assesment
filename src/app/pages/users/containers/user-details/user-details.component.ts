@@ -65,7 +65,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe((params) => {
       const userId = params['id'];
       if (this.userDetails()?.id && this.userDetails()?.id == userId) return;
-      this.dataSub = this._userService.updateUser(userId);
+      this.dataSub = this._userService.updateUserDetails(userId);
     });
   }
 
