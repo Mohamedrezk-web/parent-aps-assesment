@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { UsersService } from './services/users.service';
-import { map, Observable } from 'rxjs';
-import { GetUsersApiResponse, User } from './models/users.model';
+import { Observable } from 'rxjs';
+import { GetUsersApiResponse } from './models/users.model';
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
 import { LoaderComponent } from '@app/shared/components/loader.component';

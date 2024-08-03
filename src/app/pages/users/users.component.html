@@ -2,7 +2,14 @@
 <ul class="list-group py-3">
   <li class="list-group-item d-flex align-items-center justify-content-between">
     <span>System Users</span>
-    <button class="btn btn-primary">Add User</button>
+
+    <a
+      class="btn btn-primary"
+      [routerLink]="['add-user']"
+      routerLinkActive="router-link-active"
+    >
+      Add User
+    </a>
   </li>
 </ul>
 <div

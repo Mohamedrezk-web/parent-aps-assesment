@@ -20,6 +20,13 @@ export const routes: Routes = [
           import('./pages/users/users.component').then((c) => c.UsersComponent),
       },
       {
+        path: 'add-user',
+        loadComponent: () =>
+          import('./pages/users/containers/add-user/add-user.component').then(
+            (c) => c.AddUserComponent
+          ),
+      },
+      {
         path: 'user-details/:id',
         loadComponent: () =>
           import(
