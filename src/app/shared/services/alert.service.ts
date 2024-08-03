@@ -29,7 +29,7 @@ export class AlertService {
       | 'light'
   ) {
     this.activeAlert.set({ message, status });
-    // setTimeout(() => this.activeAlert.set(null), 3000);
+    setTimeout(() => this.activeAlert.set(null), 2000);
   }
 
   closeAlert() {
