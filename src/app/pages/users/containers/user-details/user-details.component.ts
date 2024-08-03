@@ -26,7 +26,7 @@ import { UserService } from '@app/pages/users/services/user.service';
         [ngSrc]="userDetails()?.avatar || ''"
         priority
         width="300"
-        height="300"
+        height="150"
         class="rounded-pill p-3 bg-secondary w-75 h-75"
         left-view
       />
@@ -38,12 +38,7 @@ import { UserService } from '@app/pages/users/services/user.service';
         <li
           class="list-group-item d-flex align-items-center justify-content-between"
         >
-          <a
-            class="text-bold text-secondary text-decoration-none"
-            routerLink="../../"
-          >
-            <-- back
-          </a>
+          <a class="text-bold text-secondary " routerLink="../../"> back </a>
           <button class="btn btn-secondary" (click)="navigateToUpdate()">
             Update
           </button>

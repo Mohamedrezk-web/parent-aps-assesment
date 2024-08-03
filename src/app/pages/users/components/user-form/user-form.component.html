@@ -22,7 +22,7 @@
       [ngSrc]="formControls.avatar.value || ''"
       priority
       width="300"
-      height="300"
+      height="150"
       id="image-preview"
       class="rounded-pill p-3 bg-secondary w-75 h-75"
       (click)="clearAvatarValue(); triggerFileInputClick()"
@@ -108,12 +108,7 @@
       <li
         class="list-group-item d-flex align-items-center justify-content-between"
       >
-        <a
-          class="text-bold text-secondary text-decoration-none"
-          routerLink="../"
-        >
-          <-- back
-        </a>
+        <a class="text-bold text-secondary" routerLink="../"> back </a>
         <button
           class="btn btn-outline-primary d-flex gap-3 align-items-center"
           [disabled]="loading()"

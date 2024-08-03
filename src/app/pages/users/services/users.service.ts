@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { shareReplay, tap } from 'rxjs';
+import { shareReplay } from 'rxjs';
 import { GetUsersApiResponse } from '@app/pages/users/models';
 import { AlertService } from '@app/shared/services/alert.service';
 
@@ -22,11 +22,6 @@ export class UsersService {
       .get<GetUsersApiResponse>(
         `${environment.BASE_URL}${this.USERS_END_POINT}?page=${page}`
       )
-      .pipe(
-        tap(() => {
-          this.alertService.notify('Users loaded', 'success');
-        }),
-        shareReplay()
-      );
+      .pipe(shareReplay());
   }
 }

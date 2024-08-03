@@ -43,6 +43,7 @@ export class UserService {
 
   updateUser(user: UserFormValue) {
     this.userCrudLoading.set(true);
+    user.avatar = '';
     return this.http
       .put(`${environment.BASE_URL}${this.USERS_END_POINT}/${user.id}`, user)
       .pipe(
@@ -55,8 +56,7 @@ export class UserService {
           this.alertService.notify('User updated', 'success');
         }),
         finalize(() => this.userCrudLoading.set(false))
-      )
-      .subscribe();
+      );
   }
 
   addUser(user: UserFormValue) {
@@ -66,6 +66,8 @@ export class UserService {
       .pipe(
         catchError((error) => {
           this.alertService.notify('Cannot add user', 'danger');
+          console.log('???');
+
           console.error(error);
           return error;
         }),
@@ -73,8 +75,7 @@ export class UserService {
           this.alertService.notify('User added', 'success');
         }),
         finalize(() => this.userCrudLoading.set(false))
-      )
-      .subscribe();
+      );
   }
 
   deleteUser(id: number) {

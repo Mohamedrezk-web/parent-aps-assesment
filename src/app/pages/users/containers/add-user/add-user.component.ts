@@ -11,6 +11,8 @@ import { UserFormComponent } from '@app/pages/users/components';
 import { UserService } from '@app/pages/users/services/user.service';
 import { LoaderComponent } from '@app/shared/components/loader.component';
 import { UserFormValue } from '@app/pages/users/models';
+import { Subscription, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -35,6 +37,8 @@ import { UserFormValue } from '@app/pages/users/models';
 })
 export class AddUserComponent implements OnInit, OnDestroy {
   private _userService: UserService = inject(UserService);
+  private router: Router = inject(Router);
+  subscription!: Subscription;
 
   loading = this._userService.loading;
   isAddingUser = this._userService.userCrudLoading;
@@ -43,8 +47,13 @@ export class AddUserComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   addUser(user: UserFormValue) {
-    this._userService.addUser(user);
+    this.subscription = this._userService
+      .addUser(user)
+      .pipe(tap(() => this.router.navigate(['../'])))
+      .subscribe();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 }

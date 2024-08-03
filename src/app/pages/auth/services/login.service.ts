@@ -3,8 +3,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoginFormValue } from '@app/pages/auth/models';
-import { map } from 'rxjs';
+import { catchError, map } from 'rxjs';
 import { AuthService } from './auth.service';
+import { AlertService } from '@app/shared/services/alert.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class LoginService {
   private http: HttpClient = inject(HttpClient);
   private router: Router = inject(Router);
   private authService: AuthService = inject(AuthService);
+  private readonly alertService = inject(AlertService);
 
   constructor() {}
 
@@ -32,7 +34,13 @@ export class LoginService {
           this.loading.set(false);
           localStorage.setItem('token', response.token);
           this.authService.updateCurrentUser(userCredentials.email);
+          this.alertService.notify('Login succeeded', 'danger');
           this.router.navigateByUrl('/');
+        }),
+        catchError((error) => {
+          this.alertService.notify('Cannot update user', 'danger');
+          console.error(error);
+          return error;
         })
       );
   }
