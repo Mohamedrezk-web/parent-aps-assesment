@@ -5,11 +5,13 @@ import { catchError, finalize, map, shareReplay, tap } from 'rxjs';
 import { GetUserApiResponse } from '../models/user.model';
 import { User } from '../models/users.model';
 import { UserFormValue } from '../models/user-form.model';
+import { AlertService } from '@app/shared/services/alert.service';
 
 @Injectable()
 export class UserService {
   private USERS_END_POINT = 'api/users';
   private readonly userDetails = signal<User | null>(null);
+  private readonly alertService = inject(AlertService);
 
   readonly loading = signal<boolean>(false);
   readonly userCrudLoading = signal<boolean>(false);
@@ -43,10 +45,13 @@ export class UserService {
       .put(`${environment.BASE_URL}${this.USERS_END_POINT}/${user.id}`, user)
       .pipe(
         catchError((error) => {
+          this.alertService.notify('Cannot update user', 'danger');
           console.error(error);
           return error;
         }),
-        tap(() => {}),
+        tap(() => {
+          this.alertService.notify('User updated', 'success');
+        }),
         finalize(() => this.userCrudLoading.set(false))
       )
       .subscribe();
@@ -58,10 +63,13 @@ export class UserService {
       .post(`${environment.BASE_URL}${this.USERS_END_POINT}`, user)
       .pipe(
         catchError((error) => {
+          this.alertService.notify('Cannot add user', 'danger');
           console.error(error);
           return error;
         }),
-        tap(() => {}),
+        tap(() => {
+          this.alertService.notify('User added', 'success');
+        }),
         finalize(() => this.userCrudLoading.set(false))
       )
       .subscribe();
@@ -74,10 +82,13 @@ export class UserService {
       .delete(`${environment.BASE_URL}${this.USERS_END_POINT}/${id}`)
       .pipe(
         catchError((error) => {
+          this.alertService.notify('Cannot delete user', 'danger');
           console.error(error);
           return error;
         }),
-        tap(() => {}),
+        tap(() => {
+          this.alertService.notify('User deleted', 'success');
+        }),
         finalize(() => this.userCrudLoading.set(false))
       );
   }
