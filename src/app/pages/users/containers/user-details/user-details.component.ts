@@ -1,9 +1,16 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { UserViewComponent } from '../../components/user-view/user-view.component';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoaderComponent } from '@app/shared/components/loader.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
@@ -15,11 +22,12 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
 
     <app-user-view>
       <img
-        [src]="userDetails()?.avatar"
+        [ngSrc]="userDetails()?.avatar || ''"
+        priority
+        width="300"
+        height="300"
         class="rounded-pill p-3 bg-secondary w-75 h-75"
-        alt="..."
         left-view
-        loading="eager"
       />
       <ng-container right-view>
         <h1>{{ userDetails()?.first_name }} {{ userDetails()?.last_name }}</h1>
@@ -46,8 +54,9 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
   host: {
     class: 'd-flex w-100 h-50 align-items-center justify-content-center',
   },
-  imports: [UserViewComponent, RouterLink, LoaderComponent],
+  imports: [UserViewComponent, RouterLink, LoaderComponent, NgOptimizedImage],
   providers: [UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailsComponent implements OnInit, OnDestroy {
   private routeSub!: Subscription;

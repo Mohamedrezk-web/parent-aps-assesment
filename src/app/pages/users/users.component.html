@@ -18,7 +18,13 @@
   @for (user of response.data; track user.id) {
   <div class="col">
     <div class="card h-100">
-      <img [src]="user.avatar" class="card-img-top h-100" />
+      <img
+        [ngSrc]="user.avatar"
+        priority
+        width="300"
+        height="300"
+        class="card-img-top"
+      />
       <div class="card-body">
         <h2 class="card-title text-uppercase">{{ user.first_name }}</h2>
         <p class="card-text mb-4">

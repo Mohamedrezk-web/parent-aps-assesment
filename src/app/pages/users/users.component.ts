@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
@@ -10,7 +11,7 @@ import {
 import { UsersService } from './services/users.service';
 import { Observable, Subscription, tap } from 'rxjs';
 import { GetUsersApiResponse } from './models/users.model';
-import { AsyncPipe, NgClass, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf, NgOptimizedImage } from '@angular/common';
 import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
 import { LoaderComponent } from '@app/shared/components/loader.component';
 import { RouterLink } from '@angular/router';
@@ -27,11 +28,13 @@ import { UserService } from './services/user.service';
     NumberToArrayPipe,
     LoaderComponent,
     RouterLink,
+    NgOptimizedImage,
   ],
   host: {
     class: 'h-100 w-100 d-flex flex-column overflow-auto px-3',
   },
   providers: [UsersService, UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit, OnDestroy {
   private readonly _usersService: UsersService = inject(UsersService);

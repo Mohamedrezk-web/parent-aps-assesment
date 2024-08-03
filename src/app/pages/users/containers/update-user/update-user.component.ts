@@ -1,4 +1,10 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 
 import { UserFormComponent } from '../../components/user-form/user-form.component';
 import { Subscription } from 'rxjs';
@@ -29,6 +35,7 @@ import { User } from '../../models/users.model';
   },
   imports: [UserFormComponent, LoaderComponent],
   providers: [UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateUserComponent implements OnInit, OnDestroy {
   private routeSub!: Subscription;
