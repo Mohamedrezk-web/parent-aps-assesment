@@ -34,7 +34,7 @@ export class LoginService {
           this.loading.set(false);
           localStorage.setItem('token', response.token);
           this.authService.updateCurrentUser(userCredentials.email);
-          this.alertService.notify('Login succeeded', 'danger');
+          this.alertService.notify('Login succeeded', 'success');
           this.router.navigateByUrl('/');
         }),
         catchError((error) => {
