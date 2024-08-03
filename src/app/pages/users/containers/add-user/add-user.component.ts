@@ -13,7 +13,7 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
     <app-loader></app-loader>
     } @else {
 
-    <app-user-form></app-user-form>
+    <app-user-form [loading]="loading()"></app-user-form>
     }
   `,
   host: {

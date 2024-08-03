@@ -85,7 +85,11 @@
         >
           <-- back
         </a>
-        <button class="btn btn-outline-primary" (click)="submitFormValue()">
+        <button
+          class="btn btn-outline-primary"
+          [disabled]="loading()"
+          (click)="submitFormValue()"
+        >
           Save @if (loading()) {
 
           <div class="spinner-border spinner-border-sm" role="status">
