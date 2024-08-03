@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   input,
@@ -28,6 +29,7 @@ import { RouterLink } from '@angular/router';
   },
   imports: [UserViewComponent, ReactiveFormsModule, NgClass, RouterLink],
   providers: [UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit {
   userFormGroup!: FormGroup<UserFormControls>;

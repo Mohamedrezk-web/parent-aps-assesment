@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { LoginService } from '@app/pages/auth/services/login.service';
 
 @Component({
@@ -20,6 +25,7 @@ import { LoginService } from '@app/pages/auth/services/login.service';
   host: {
     class: 'd-block z-1 bg-dark vw-100 sticky-top',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
   private readonly _loginService: LoginService = inject(LoginService);

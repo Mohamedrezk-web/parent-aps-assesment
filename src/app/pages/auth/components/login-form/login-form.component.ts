@@ -1,5 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -14,6 +21,7 @@ import { LoginFormControls, LoginFormValue } from '@app/pages/auth/models';
   templateUrl: './login-form.component.html',
 
   imports: [ReactiveFormsModule, NgClass],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent implements OnInit {
   loginFormGroup!: FormGroup<LoginFormControls>;

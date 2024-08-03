@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -24,6 +24,7 @@ import { FooterComponent } from '../footer/footer.component';
   host: {
     class: ' d-flex flex-column w-100 h-100',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
   get localStorageToken() {

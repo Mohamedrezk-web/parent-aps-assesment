@@ -1,4 +1,10 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 
 import { UserFormComponent } from '../../components/user-form/user-form.component';
 
@@ -25,6 +31,7 @@ import { UserFormValue } from '../../models/user-form.model';
   },
   imports: [UserFormComponent, LoaderComponent],
   providers: [UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddUserComponent implements OnInit, OnDestroy {
   private _userService: UserService = inject(UserService);
