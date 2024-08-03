@@ -18,7 +18,27 @@ export const routes: Routes = [
         path: '',
         loadComponent: () =>
           import('./pages/users/users.component').then((c) => c.UsersComponent),
-        canActivate: [AuthGuard],
+      },
+      {
+        path: 'add-user',
+        loadComponent: () =>
+          import('./pages/users/containers/add-user/add-user.component').then(
+            (c) => c.AddUserComponent
+          ),
+      },
+      {
+        path: 'user-details/:id',
+        loadComponent: () =>
+          import(
+            './pages/users/containers/user-details/user-details.component'
+          ).then((c) => c.UserDetailsComponent),
+      },
+      {
+        path: 'user-details/:id/update',
+        loadComponent: () =>
+          import(
+            './pages/users/containers/update-user/update-user.component'
+          ).then((c) => c.UpdateUserComponent),
       },
     ],
   },

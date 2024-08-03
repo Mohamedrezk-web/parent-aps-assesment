@@ -1,0 +1,103 @@
+<form
+  [formGroup]="userFormGroup"
+  class="w-100"
+  [ngClass]="{
+    'was-validated': userFormGroup.valid
+  }"
+>
+  <app-user-view>
+    <div
+      class="rounded-pill p-3 bg-secondary w-75 h-75 d-flex align-items-center justify-content-center text-white"
+      left-view
+    >
+      Upload image
+    </div>
+    <ng-container right-view>
+      <div class="d-flex gap-3 w-75">
+        <div class="mb-3 w-50">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            formControlName="first_name"
+          />
+          @if (formControls.first_name.errors && submitted) {
+
+          <div
+            class="invalid-feedback"
+            [ngClass]="[formControls.first_name.valid ? 'd-none' : 'd-block']"
+          >
+            First Name is required.
+          </div>
+          }
+        </div>
+        <div class="mb-3 w-50">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            formControlName="last_name"
+          />
+          @if (formControls.last_name.errors && submitted) {
+
+          <div
+            class="invalid-feedback"
+            [ngClass]="[formControls.last_name.valid ? 'd-none' : 'd-block']"
+          >
+            Last Name is required.
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3 w-75">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+        @if (formControls.email.errors && submitted) {
+
+        <div
+          class="invalid-feedback"
+          [ngClass]="[formControls.email.valid ? 'd-none' : 'd-block']"
+        >
+          {{ formControls.email.errors["required"] && "Email is required." }}
+          {{
+            formControls.email.errors["email"] && "Please add correct email."
+          }}
+        </div>
+        }
+      </div>
+    </ng-container>
+
+    <ul class="list-group w-100" lift-view>
+      <li
+        class="list-group-item d-flex align-items-center justify-content-between"
+      >
+        <a
+          class="text-bold text-secondary text-decoration-none"
+          routerLink="../"
+        >
+          <-- back
+        </a>
+        <button
+          class="btn btn-outline-primary d-flex gap-3 align-items-center"
+          [disabled]="loading()"
+          (click)="submitFormValue()"
+        >
+          Save @if (loading()) {
+
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only text-success">.</span>
+          </div>
+          }
+        </button>
+      </li>
+    </ul>
+  </app-user-view>
+</form>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { concatMap, map, shareReplay } from 'rxjs';
+import { shareReplay } from 'rxjs';
 import { GetUsersApiResponse } from '../models/users.model';
 
 @Injectable()
