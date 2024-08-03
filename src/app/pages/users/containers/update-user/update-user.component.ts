@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { LoaderComponent } from '@app/shared/components/loader.component';
+import { UserFormValue } from '../../models/user-form.model';
+import { User } from '../../models/users.model';
 
 @Component({
   selector: 'app-update-user',
@@ -17,7 +19,8 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
 
     <app-user-form
       [formValue]="userDetails()"
-      [loading]="loading()"
+      [loading]="isUpdatingUser()"
+      (onSubmit)="updateUser($event)"
     ></app-user-form>
     }
   `,
@@ -30,12 +33,14 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
 export class UpdateUserComponent implements OnInit, OnDestroy {
   private routeSub!: Subscription;
   private dataSub!: Subscription;
+  private updateSub!: Subscription;
 
   private _userService: UserService = inject(UserService);
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   userDetails = this._userService.getUserDetails();
   loading = this._userService.loading;
+  isUpdatingUser = this._userService.userCrudLoading;
 
   constructor() {}
 
@@ -47,8 +52,13 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateUser(user: UserFormValue) {
+    this.updateSub = this._userService.updateUser(user);
+  }
+
   ngOnDestroy(): void {
     this.routeSub?.unsubscribe();
     this.dataSub?.unsubscribe();
+    this.updateSub?.unsubscribe();
   }
 }

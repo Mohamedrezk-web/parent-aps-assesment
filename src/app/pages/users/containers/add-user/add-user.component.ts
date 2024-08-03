@@ -13,7 +13,7 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
     <app-loader></app-loader>
     } @else {
 
-    <app-user-form [loading]="loading()"></app-user-form>
+    <app-user-form [loading]="isAddingUser()"></app-user-form>
     }
   `,
   host: {
@@ -26,7 +26,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
   private _userService: UserService = inject(UserService);
 
   loading = this._userService.loading;
-
+  isAddingUser = this._userService.userCrudLoading;
   constructor() {}
 
   ngOnInit(): void {}

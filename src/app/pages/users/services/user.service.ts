@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { catchError, finalize, map, shareReplay, tap } from 'rxjs';
 import { GetUserApiResponse } from '../models/user.model';
 import { User } from '../models/users.model';
+import { UserFormValue } from '../models/user-form.model';
 
 @Injectable()
 export class UserService {
@@ -11,6 +12,7 @@ export class UserService {
   private readonly userDetails = signal<User | null>(null);
 
   readonly loading = signal<boolean>(false);
+  readonly userCrudLoading = signal<boolean>(false);
 
   private http: HttpClient = inject(HttpClient);
 
@@ -35,21 +37,23 @@ export class UserService {
       .subscribe();
   }
 
-  updateUser(id: number, user: User) {
+  updateUser(user: UserFormValue) {
+    this.userCrudLoading.set(true);
     return this.http
-      .put(`${environment.BASE_URL}${this.USERS_END_POINT}/${id}`, user)
+      .put(`${environment.BASE_URL}${this.USERS_END_POINT}/${user.id}`, user)
       .pipe(
         catchError((error) => {
           console.error(error);
           return error;
         }),
         tap(() => {}),
-        finalize(() => this.loading.set(false))
+        finalize(() => this.userCrudLoading.set(false))
       )
       .subscribe();
   }
 
-  addUser(user: User) {
+  addUser(user: UserFormValue) {
+    this.userCrudLoading.set(true);
     return this.http
       .post(`${environment.BASE_URL}${this.USERS_END_POINT}`, user)
       .pipe(
@@ -58,12 +62,14 @@ export class UserService {
           return error;
         }),
         tap(() => {}),
-        finalize(() => this.loading.set(false))
+        finalize(() => this.userCrudLoading.set(false))
       )
       .subscribe();
   }
 
   deleteUser(id: number) {
+    this.userCrudLoading.set(true);
+
     return this.http
       .delete(`${environment.BASE_URL}${this.USERS_END_POINT}/${id}`)
       .pipe(
@@ -72,7 +78,7 @@ export class UserService {
           return error;
         }),
         tap(() => {}),
-        finalize(() => this.loading.set(false))
+        finalize(() => this.userCrudLoading.set(false))
       )
       .subscribe();
   }

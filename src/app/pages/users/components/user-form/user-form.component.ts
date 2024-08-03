@@ -48,8 +48,9 @@ export class UserFormComponent {
   }
   constructor() {}
 
-  initUserForm() {
+  initUserForm(id = null) {
     this.userFormGroup = new FormGroup<UserFormControls>({
+      id: new FormControl(id, [Validators.required]),
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
       avatar: new FormControl(''),
