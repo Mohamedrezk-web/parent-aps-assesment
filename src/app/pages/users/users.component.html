@@ -37,6 +37,7 @@
             class="btn btn-outline-secondary"
             data-bs-toggle="modal"
             data-bs-target="#DeleteModal"
+            (click)="markUserForDelete(user.id)"
             >Delete</a
           >
         </div>
@@ -88,18 +89,27 @@
         <button
           type="button"
           class="btn-close"
+          #closeModalButton
           data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="unMarkUserFromDelete()"
         ></button>
       </div>
       <div class="modal-body">
         <p>Are you sure you want to delete this user?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="unMarkUserFromDelete()"
+          data-bs-dismiss="modal"
+        >
           Close
         </button>
-        <button type="button" class="btn btn-danger">Confirm</button>
+        <button type="button" class="btn btn-danger" (click)="deleteUser()">
+          Confirm
+        </button>
       </div>
     </div>
   </div>

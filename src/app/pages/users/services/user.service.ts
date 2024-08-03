@@ -79,8 +79,7 @@ export class UserService {
         }),
         tap(() => {}),
         finalize(() => this.userCrudLoading.set(false))
-      )
-      .subscribe();
+      );
   }
 
   getUserDetails() {
