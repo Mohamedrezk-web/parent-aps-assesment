@@ -30,6 +30,7 @@ export class UsersComponent implements OnInit {
   user$: Observable<GetUsersApiResponse> = this._usersService.getAll(1);
 
   ngOnInit(): void {}
+
   changePage(pageIndex: number) {
     this.user$ = this._usersService.getAll(pageIndex);
     this.activePageIndex.set(pageIndex);

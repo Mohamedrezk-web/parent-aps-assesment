@@ -1,6 +1,12 @@
 @if (user$ | async; as response) {
+<ul class="list-group py-3">
+  <li class="list-group-item d-flex align-items-center justify-content-between">
+    <span>System Users</span>
+    <button class="btn btn-primary">Add User</button>
+  </li>
+</ul>
 <div
-  class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3 pt-3 mh-100 overflow-auto"
+  class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3 mh-100 overflow-auto"
 >
   @for (user of response.data; track user.id) {
   <div class="col">
