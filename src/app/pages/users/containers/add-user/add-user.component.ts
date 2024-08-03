@@ -6,11 +6,11 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { UserFormComponent } from '../../components/user-form/user-form.component';
+import { UserFormComponent } from '@app/pages/users/components';
 
-import { UserService } from '../../services/user.service';
+import { UserService } from '@app/pages/users/services/user.service';
 import { LoaderComponent } from '@app/shared/components/loader.component';
-import { UserFormValue } from '../../models/user-form.model';
+import { UserFormValue } from '@app/pages/users/models';
 
 @Component({
   selector: 'app-add-user',

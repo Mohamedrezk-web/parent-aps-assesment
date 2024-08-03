@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { catchError, shareReplay, tap } from 'rxjs';
-import { GetUsersApiResponse } from '../models/users.model';
+import { shareReplay, tap } from 'rxjs';
+import { GetUsersApiResponse } from '@app/pages/users/models';
 import { AlertService } from '@app/shared/services/alert.service';
 
 @Injectable()

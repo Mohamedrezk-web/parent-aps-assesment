@@ -5,12 +5,13 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { UserViewComponent } from '../../components/user-view/user-view.component';
-import { UserService } from '../../services/user.service';
+
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoaderComponent } from '@app/shared/components/loader.component';
 import { NgOptimizedImage } from '@angular/common';
+import { UserViewComponent } from '@app/pages/users/components';
+import { UserService } from '@app/pages/users/services/user.service';
 
 @Component({
   selector: 'app-user-details',

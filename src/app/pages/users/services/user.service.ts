@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, finalize, map, shareReplay, tap } from 'rxjs';
-import { GetUserApiResponse } from '../models/user.model';
-import { User } from '../models/users.model';
-import { UserFormValue } from '../models/user-form.model';
+import {
+  GetUserApiResponse,
+  UserFormValue,
+  User,
+} from '@app/pages/users/models';
 import { AlertService } from '@app/shared/services/alert.service';
 
 @Injectable()

@@ -6,13 +6,12 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { UserFormComponent } from '../../components/user-form/user-form.component';
+import { UserFormComponent } from '@app/pages/users/components';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '@app/pages/users/services/user.service';
 import { LoaderComponent } from '@app/shared/components/loader.component';
-import { UserFormValue } from '../../models/user-form.model';
-import { User } from '../../models/users.model';
+import { UserFormValue } from '@app/pages/users/models';
 
 @Component({
   selector: 'app-update-user',

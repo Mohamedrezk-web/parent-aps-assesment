@@ -11,8 +11,8 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { UserViewComponent } from '../../components/user-view/user-view.component';
-import { UserService } from '../../services/user.service';
+import { UserViewComponent } from '@app/pages/users/components';
+import { UserService } from '@app/pages/users/services/user.service';
 
 import {
   FormControl,
