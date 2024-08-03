@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-user-view',
@@ -21,6 +21,7 @@ import { Component } from '@angular/core';
   host: {
     class: 'row w-100 h-100 position-relative',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserViewComponent {
   constructor() {}

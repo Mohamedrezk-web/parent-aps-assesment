@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -16,6 +16,7 @@ import { Component } from '@angular/core';
   host: {
     class: 'py-3 bg-dark text-center',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   constructor() {}

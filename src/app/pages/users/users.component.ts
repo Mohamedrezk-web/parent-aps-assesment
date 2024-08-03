@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
@@ -32,6 +33,7 @@ import { UserService } from './services/user.service';
     class: 'h-100 w-100 d-flex flex-column overflow-auto px-3',
   },
   providers: [UsersService, UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit, OnDestroy {
   private readonly _usersService: UsersService = inject(UsersService);

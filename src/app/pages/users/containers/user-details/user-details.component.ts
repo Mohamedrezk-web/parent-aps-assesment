@@ -1,4 +1,10 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { UserViewComponent } from '../../components/user-view/user-view.component';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -48,6 +54,7 @@ import { LoaderComponent } from '@app/shared/components/loader.component';
   },
   imports: [UserViewComponent, RouterLink, LoaderComponent],
   providers: [UserService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailsComponent implements OnInit, OnDestroy {
   private routeSub!: Subscription;

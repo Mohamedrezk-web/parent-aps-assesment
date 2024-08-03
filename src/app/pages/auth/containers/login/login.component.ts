@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { LoginFormComponent } from '@app/pages/auth/components';
 import { LoginFormValue } from '@app/pages/auth/models';
 import { LoginService } from '@app/pages/auth/services/login.service';
@@ -25,6 +30,7 @@ import { LoginService } from '@app/pages/auth/services/login.service';
     class: 'w100 h-100 d-flex justify-content-center ',
   },
   imports: [LoginFormComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   readonly _loginService: LoginService = inject(LoginService);
