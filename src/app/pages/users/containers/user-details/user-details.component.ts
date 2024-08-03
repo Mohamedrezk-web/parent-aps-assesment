@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
     </app-user-view>
   `,
   host: {
-    class: 'd-flex w-100 h-50',
+    class: 'd-flex w-100 h-50 align-items-center justify-content-center',
   },
   imports: [UserViewComponent],
   providers: [UserService],

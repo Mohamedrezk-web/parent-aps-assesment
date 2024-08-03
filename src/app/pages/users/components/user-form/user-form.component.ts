@@ -32,7 +32,7 @@ export class UserFormComponent implements OnInit {
   userFormGroup!: FormGroup<UserFormControls>;
   submitted: boolean = false;
 
-  @Input() set formValue(value: UserFormValue) {
+  @Input() set formValue(value: UserFormValue | null) {
     if (!value) return;
     this.userFormGroup.patchValue(value);
   }

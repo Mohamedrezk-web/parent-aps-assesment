@@ -10,7 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
     @if (localStorageToken) {
     <app-header></app-header>
     <main
-      class="container d-flex bg-dark bg-opacity-10 px-2 justify-content-center align-items-center"
+      class="container d-flex  px-2 justify-content-center align-items-center"
     >
       <router-outlet></router-outlet>
     </main>

@@ -1,16 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { UserFormComponent } from '../../components/user-form/user-form.component';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-update-user',
   standalone: true,
-  template: ` <app-user-form></app-user-form> `,
+  template: ` <app-user-form [formValue]="userDetails()"></app-user-form> `,
   host: {
     class: 'w-100 h-100 d-flex justify-content-center align-items-center',
   },
   imports: [UserFormComponent],
+  providers: [UserService],
 })
-export class UpdateUserComponent {
+export class UpdateUserComponent implements OnInit, OnDestroy {
+  private routeSub!: Subscription;
+  private dataSub!: Subscription;
+
+  private _userService: UserService = inject(UserService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
+
+  userDetails = this._userService.getUserDetails();
+
   constructor() {}
+
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe((params) => {
+      const userId = params['id'];
+      if (this.userDetails()?.id && this.userDetails()?.id == userId) return;
+      this.dataSub = this._userService.updateUser(userId);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.routeSub?.unsubscribe();
+    this.dataSub?.unsubscribe();
+  }
 }
