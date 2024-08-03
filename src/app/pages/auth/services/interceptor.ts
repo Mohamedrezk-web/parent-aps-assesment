@@ -1,5 +1,4 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
 
 export const interceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('token') ?? '';

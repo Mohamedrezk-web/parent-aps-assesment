@@ -7,8 +7,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { UserViewComponent } from '../../components/user-view/user-view.component';
-import { UserService } from '../../services/user.service';
+import { UserViewComponent } from '@app/pages/users/components';
+import { UserService } from '@app/pages/users/services/user.service';
 
 import {
   FormControl,
@@ -16,7 +16,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { UserFormControls, UserFormValue } from '../../models/user-form.model';
+import { UserFormControls, UserFormValue } from '@app/pages/users/models';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 

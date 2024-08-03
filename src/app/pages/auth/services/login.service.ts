@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { LoginFormValue } from '../models';
+import { LoginFormValue } from '@app/pages/auth/models';
 import { map } from 'rxjs';
 import { AuthService } from './auth.service';
 

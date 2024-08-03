@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
-import { AlertComponent } from '../../shared/components/alert.component';
+import { HeaderComponent } from '@app/ui/header/header.component';
+import { FooterComponent } from '@app/ui/footer/footer.component';
+import { AlertComponent } from '@app/shared/components/alert.component';
 
 @Component({
   selector: 'app-layout',
