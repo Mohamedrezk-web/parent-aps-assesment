@@ -74,13 +74,26 @@
         }
       </div>
     </ng-container>
-    <button class="btn btn-primary" lift-view (click)="submitFormValue()">
-      Save @if (loading()) {
 
-      <div class="spinner-border spinner-border-sm" role="status">
-        <span class="sr-only text-success">.</span>
-      </div>
-      }
-    </button>
+    <ul class="list-group w-100" lift-view>
+      <li
+        class="list-group-item d-flex align-items-center justify-content-between"
+      >
+        <a
+          class="text-bold text-secondary text-decoration-none"
+          routerLink="../"
+        >
+          <-- back
+        </a>
+        <button class="btn btn-outline-primary" (click)="submitFormValue()">
+          Save @if (loading()) {
+
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only text-success">.</span>
+          </div>
+          }
+        </button>
+      </li>
+    </ul>
   </app-user-view>
 </form>

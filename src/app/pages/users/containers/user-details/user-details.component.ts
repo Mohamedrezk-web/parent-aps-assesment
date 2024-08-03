@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { UserViewComponent } from '../../components/user-view/user-view.component';
 import { UserService } from '../../services/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,15 +20,27 @@ import { Subscription } from 'rxjs';
         <h1>{{ userDetails()?.first_name }} {{ userDetails()?.last_name }}</h1>
         <p>{{ userDetails()?.email }}</p>
       </ng-container>
-      <button class="btn btn-secondary" lift-view (click)="navigateToUpdate()">
-        Update
-      </button>
+      <ul class="list-group w-100" lift-view>
+        <li
+          class="list-group-item d-flex align-items-center justify-content-between"
+        >
+          <a
+            class="text-bold text-secondary text-decoration-none"
+            routerLink="../../"
+          >
+            <-- back
+          </a>
+          <button class="btn btn-secondary" (click)="navigateToUpdate()">
+            Update
+          </button>
+        </li>
+      </ul>
     </app-user-view>
   `,
   host: {
     class: 'd-flex w-100 h-50 align-items-center justify-content-center',
   },
-  imports: [UserViewComponent],
+  imports: [UserViewComponent, RouterLink],
   providers: [UserService],
 })
 export class UserDetailsComponent implements OnInit, OnDestroy {

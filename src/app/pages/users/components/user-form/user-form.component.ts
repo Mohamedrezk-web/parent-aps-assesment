@@ -17,6 +17,7 @@ import {
 } from '@angular/forms';
 import { UserFormControls, UserFormValue } from '../../models/user-form.model';
 import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -25,7 +26,7 @@ import { NgClass } from '@angular/common';
   host: {
     class: 'd-flex w-100 h-50',
   },
-  imports: [UserViewComponent, ReactiveFormsModule, NgClass],
+  imports: [UserViewComponent, ReactiveFormsModule, NgClass, RouterLink],
   providers: [UserService],
 })
 export class UserFormComponent implements OnInit {

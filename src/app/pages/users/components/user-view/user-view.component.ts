@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
     >
       <ng-content select="[right-view]"> </ng-content>
     </div>
-    <div class="position-absolute w-auto lift-0">
+    <div class="position-absolute w-100 pb-3 lift-0 btm--45">
       <ng-content select="[lift-view]"> </ng-content>
     </div>
   `,
