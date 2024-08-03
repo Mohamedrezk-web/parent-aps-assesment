@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { shareReplay } from 'rxjs';
+import { catchError, shareReplay, tap } from 'rxjs';
 import { GetUsersApiResponse } from '../models/users.model';
+import { AlertService } from '@app/shared/services/alert.service';
 
 @Injectable()
 export class UsersService {
@@ -11,6 +12,7 @@ export class UsersService {
   readonly loading = signal<boolean>(false);
 
   private http: HttpClient = inject(HttpClient);
+  private readonly alertService = inject(AlertService);
 
   constructor() {}
 
@@ -20,6 +22,11 @@ export class UsersService {
       .get<GetUsersApiResponse>(
         `${environment.BASE_URL}${this.USERS_END_POINT}?page=${page}`
       )
-      .pipe(shareReplay());
+      .pipe(
+        tap(() => {
+          this.alertService.notify('Users loaded', 'success');
+        }),
+        shareReplay()
+      );
   }
 }
