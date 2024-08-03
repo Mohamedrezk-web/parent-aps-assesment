@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { AlertComponent } from '../../shared/components/alert.component';
 
 @Component({
   selector: 'app-layout',
@@ -10,8 +11,9 @@ import { FooterComponent } from '../footer/footer.component';
     @if (localStorageToken) {
     <app-header></app-header>
     <main
-      class="container d-flex  px-2 justify-content-center align-items-center"
+      class="container d-flex flex-column  px-2 justify-content-center align-items-center"
     >
+      <app-alert></app-alert>
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
@@ -20,7 +22,7 @@ import { FooterComponent } from '../footer/footer.component';
 
     }
   `,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, AlertComponent],
   host: {
     class: ' d-flex flex-column w-100 h-100',
   },
